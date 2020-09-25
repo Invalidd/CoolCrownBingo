@@ -39,7 +39,7 @@ public class Listeners implements Listener {
 
     public static void grantAchievement(Player player, String achievement){
         try {
-            NamespacedKey key = new NamespacedKey("bingokees", achievement);
+            NamespacedKey key = new NamespacedKey(Main.plugin.getConfig().get("advancement_name").toString(), achievement);
             AdvancementProgress progress = player.getAdvancementProgress(Bukkit.getAdvancement(key));
             for(String criteria : progress.getRemainingCriteria())
                 progress.awardCriteria(criteria);
