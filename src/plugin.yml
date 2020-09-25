@@ -1,0 +1,4 @@
+name: CCCBingo
+description: Cool Crown Clan Bingo Plugin
+version: 1.0
+main: com.invalid.CCCBingo.Main
