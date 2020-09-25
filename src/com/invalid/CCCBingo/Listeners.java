@@ -1,6 +1,5 @@
 package com.invalid.CCCBingo;
 
-import net.minecraft.server.v1_16_R1.World;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -12,10 +11,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPortalEnterEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.world.PortalCreateEvent;
 
 public class Listeners implements Listener {
+    /**
+     * Listener event for when a player dies due to kinetic energy
+     * @param event Event for when a player dies
+     */
     @EventHandler
     public void onDeath(PlayerDeathEvent event){
         if (event.getDeathMessage().contains("experienced kinetic energy")) {
@@ -23,6 +24,10 @@ public class Listeners implements Listener {
         }
     }
 
+    /**
+     * Listener event for when a player goes through a portal within 5 blocks of a ruined portal
+     * @param event Event for when a player enters a portal
+     */
     @EventHandler
     public void ruinedPortal(EntityPortalEnterEvent event) {
         Entity entity = event.getEntity();
@@ -37,6 +42,12 @@ public class Listeners implements Listener {
         }
     }
 
+    /**
+     * Grants an achievement to a player
+     * Throws an exception if the achievement is not found
+     * @param player {Player} The player to grant achievement
+     * @param achievement {String} The name of the achievement to grant
+     */
     public static void grantAchievement(Player player, String achievement){
         try {
             NamespacedKey key = new NamespacedKey(Main.plugin.getConfig().get("advancement_name").toString(), achievement);

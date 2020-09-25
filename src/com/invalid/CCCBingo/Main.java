@@ -9,6 +9,9 @@ public class Main extends JavaPlugin {
     public static ConsoleCommandSender console;
     public static Server server;
 
+    /**
+     * Runs during the initialization of a server
+     */
     public void onEnable() {
         plugin = this; //Saving the plugin class
         server = Bukkit.getServer(); //Gets the server
@@ -19,22 +22,21 @@ public class Main extends JavaPlugin {
 
         //Load/create config
         handleConfig();
-
-        //Setting variable values through config
-        //BlockParty.floorSize = Main.plugin.getConfig().getInt("FloorSize");
-        //BlockParty.saveFloorRestriction = Main.plugin.getConfig().getBoolean("SaveFloor.Restricted");
-        //BlockParty.saveFloorUUID = Main.plugin.getConfig().get("SaveFloor.UUID").toString();
-
         //Setting up listeners
         setupPlugin();
     }
 
-    /*Sets up the plugin by registering the commands and handlers*/
+    /**
+     * Sets up the plugin by registering the commands and handlers
+     */
     private void setupPlugin(){
         //Registering listeners
         Bukkit.getPluginManager().registerEvents(new Listeners(), this);
     }
 
+    /**
+     * Loads the config and saves it
+    */
     private void handleConfig(){
         getConfig().options().copyDefaults(true);
         saveConfig();
